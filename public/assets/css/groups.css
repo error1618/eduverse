@@ -1,0 +1,15 @@
+.chat-ui{
+width: 66%;
+}
+
+@media (min-width: 1199%) {
+
+    .chat-ui{
+        width: 100%;
+        }
+        
+  }
+
+
+
+  
