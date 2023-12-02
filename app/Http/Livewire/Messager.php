@@ -67,7 +67,7 @@ class Messager extends Component
         return view("livewire.messager");
     }
     public function showMessages($userId){
-        $user = User::findOrFail($userId);
+        $user = User::find($userId);
         $this->selected = null;
         $this->selected = $user;
         $this->messages = Message::messageList($user->id)->get()->toArray();

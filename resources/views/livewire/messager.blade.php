@@ -31,7 +31,7 @@
                           @if($case == $user->id)
                           new messages
                               <script>
-                                    document.getElementById('dropdownMenuButton').innerHTML = '<div class="number"></div>'
+                                          document.getElementById('nct').innerHTML = '<div class="number"></div>' + document.getElementById('nct').innerHTML
                                 
                                     let userame = "{{$user->name}}";
                                     let condition = document.getElementById(userame)
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(!other){
               
           console.log("other "+other);
-          document.getElementById('dropdownMenuButton').innerHTML = '<div id ="number" class="number"></div>'  
+          document.getElementById('nct').innerHTML = '<div class="number"></div>' + document.getElementById('nct').innerHTML
                           let userame = "{{$user->name}}";
                                       document.getElementById("notify").innerHTML+=
                                       `<li class="mb-2" id="${from}" onclick="remove(this)">\
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 @if ($selected)
 
-  <div class="chatbox" id="chatbox">
+  <div class="chatbox" id="chatbox" style="left: 0;right: 0;">
     <input type="hidden" id="xcs" value="{{$selected->name}}">
     <div class="top-bar" id="chat-close">
       <div class="avatarc" style='background-image: url("{{$selected->profile_photo_path}}");    background-size: contain;'></div>

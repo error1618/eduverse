@@ -1,5 +1,21 @@
 
 
+document.getElementById('befr').onclick = ()=>{
+  console.log("{{$userOther->id}}")
+  befriend(document.querySelector('meta[name="user-id"]').getAttribute("content"))
+}
+
+
+
+document.getElementById("closePopup").addEventListener("click", function() {
+  document.getElementById("popupContainer").classList.remove("active"); 
+});
+
+document.getElementById('popupbtn').onclick = ()=>{
+  document.getElementById("popupContainer").classList.add("active"); 
+   
+}
+
 async function  befriend(id){
         const response = await fetch("users/message?id="+id, {
           method: "GET",

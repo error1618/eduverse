@@ -10,17 +10,24 @@ class group extends Model
 {
 
     use HasFactory;
+
+    protected $fillable = [
+        "members",
+    ];
     
     public function getGroupMembers(){
-        return $this->user_ids ?? [];
+        return json_decode($this->members, true) ?? [];
     }
 
     public function addGroupMember($userId)
     {
+        if( in_array($userId,$this->getGroupMembers())){
+            return ;
+        }
         $userIds = $this->getGroupMembers();
-        $userIds[] = $userId;
+        $userIds[] = (int)$userId;
+        $this->update(['members' => $userIds]);
 
-        $this->update(['user_ids' => $userIds]);
     }
 
     public function deleteGroupMember($userId){
@@ -28,13 +35,25 @@ class group extends Model
         $userIds = array_filter($userIds, function ($id) use ($userId) {
             return $id != $userId;
         });
-
-        $this->update(['user_ids' => $userIds]);
+        $this->update(['members' => json_encode($userIds)]);
     }
 
     public function groupMessages(){
         return DB::table('group_messages')
         ->where('group_id', $this->id)->get();
+    }
+
+    public function addMessage($content,$sender_id){
+        $message = new GroupMessage();
+        $message->sender_id = $sender_id;
+        $message->message  = $content;
+        $message->group_id = $this->id;
+        $message->save();
+        return $message  ;
+    }
+
+    public function deleteGroup(){
+        $this->delete();
     }
     
 }

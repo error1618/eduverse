@@ -567,10 +567,11 @@ VIRTED  </title>
 
 @if(count($student)>0)
 <a href="{{ url(route('people.all', ['type' => 'student'])) }}" class="see-all" ><strong>
-@if($lang == 'en')SEE ALL
+  @if($lang == 'en')SEE ALL
         @elseif($lang == 'fr')VOIR TOUT
         @elseif($lang == 'es')عرض الكل
-        @endif</strong></a>
+        @endif
+</strong></a>
 @endif
 
 

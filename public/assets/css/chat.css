@@ -351,7 +351,7 @@
   background-color: #F0F0F0;
   color: #333;
   border-radius: 10px 10px 10px 0;
-  border-radius:28px 50px 50px 0;
+  border-radius: 10px 13px 13px 0;
   font: message-box;
 
 }
@@ -360,7 +360,7 @@
   background-color: #79bbfe;
   color: #fff;
   border-radius: 10px 10px 0 10px;
-  border-radius:50px 50px 0 50px;
+  border-radius:13px 13px 0 13px;
   font: message-box;
 
 }

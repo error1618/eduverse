@@ -201,7 +201,7 @@
             
             <li class="nav-item dropdown pe-2 d-flex align-items-center" style="margin:0px!important;margin:2px">
              &nbsp;&nbsp;
-              <a href="javascript:;" class="nav-link text-black p-0" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="javascript:;" id="nct" class="nav-link text-black p-0" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"  id="dropdownMenuButton" style="color:#fbcf33"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end px-2 py-3 ms-n4" id="notify" aria-labelledby="dropdownMenuButton">

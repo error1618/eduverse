@@ -52,9 +52,8 @@
 
 
 .number {
-  position: absolute;
-  top: 5px;
-  right: 1px;
+  top: 8px;
+  left: 70%;
   width: 10px;
   height: 10px;
   background-color: #ff6b6b;
@@ -63,8 +62,10 @@
   font-weight: bold;
   border-radius: 50%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  /* align-items: center; */
+  margin: 0;
+  padding: 0
 }
 
 
@@ -196,3 +197,4 @@ button:not(:disabled), [type="button"]:not(:disabled), [type="reset"]:not(:disab
   min-height: 60px!important;
   overflow: hidden !important;
 }
+

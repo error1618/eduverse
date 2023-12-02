@@ -16,6 +16,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <meta name="user-id" content="{{$userOther->id}}">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <link rel="stylesheet"  href="../assets/css/chat.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -27,6 +28,7 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link href="../assets/css/popup.css" rel="stylesheet" />
 
   <title>
 VIRTED  </title>
@@ -80,7 +82,7 @@ VIRTED  </title>
             <div class="nav-wrapper position-relative end-0">
               <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
            
-              <li class="nav-item " onclick="befriend('{{$userOther->id}}')" >
+              <li class="nav-item " id="befr" >
                   <a class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true" >
                     <svg class="text-dark" width="16px" height="16px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -99,12 +101,57 @@ VIRTED  </title>
                   </a>
                 </li>
 
+
+                <li class="nav-item " id="popupbtn" >
+                  <a class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true" >
+                  <svg class="text-dark" width="16px" height="16px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                        <g transform="translate(1716.000000, 291.000000)">
+                          <g transform="translate(603.000000, 0.000000)">
+                            <!-- Horizontal Bar -->
+                            <rect class="color-background" x="0" y="18.1818182" width="42" height="5.45454545"></rect>
+                            <!-- Vertical Bar -->
+                            <rect class="color-background" x="18.1818182" y="0" width="5.45454545" height="42"></rect>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+
+                    <span class="ms-1">@if ($lang=='en') Add To Group @elseif($lang=='fr')Ajouter au Groupe @elseif($lang=='es')اضافة لمجموعة@endif</span>
+                  </a>
+                </li>
+
+
+
               </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div id="popupContainer" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close-popup">&times;</span>
+        <h2>@if ($lang=='en') Add to @elseif($lang=='fr')Ajouter à@elseif($lang=='es')اضافة الى@endif</h2>
+        <ul class="list-group">
+            @foreach ($groups as $group)
+                <li class="list-group-item">
+                    <form action="{{route('add.group')}}" >
+                        <input type="hidden" name="gid" value="{{$group->id}}">
+                        <input type="hidden" name="uid" value="{{$userOther->id}}">
+                        <button class="btn btn-outline-primary btn-sm mb-0 outbtn w-100" type="submit">{{$group->name}}</button>
+                    </form>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+
+
+
+
     <div class="container-fluid py-4">
       <div class="row">
         @if ($lang=="es")
@@ -248,7 +295,7 @@ VIRTED  </title>
             <div class="card-body p-3">
             <div>
               @foreach ($userOther->Badges($userOther->id) as $badge)
-                <img class="bdg" src="{{$badge->badge}}" title="{{$badge->description}}" >
+                <img class="bdg" src="../{{$badge->badge}}" title="{{$badge->description}}" >
               @endforeach
               </div>             
             </div>

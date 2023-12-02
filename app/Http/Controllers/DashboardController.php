@@ -16,7 +16,6 @@ class DashboardController extends Controller
 
     public function others_profile(){
         $user = User::find($id);
-    
         if ($user) {
             $userData= [
                 'name' => $teacher->name,

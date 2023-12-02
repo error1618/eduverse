@@ -45,6 +45,7 @@ Route::post('/gusm', [App\Http\Controllers\UserController::class, 'getName']);
 //GROUPCHAT ROUTES----------------------------------------------------
 Route::get('/groups', [App\Http\Controllers\GroupController::class,'index'])->middleware('auth')->name('groupchat');
 Route::get('/groups/new-group', [App\Http\Controllers\GroupController::class,'CreateGroup'])->middleware('auth')->name('new.group');
+Route::get('/groups/add-member', [App\Http\Controllers\GroupController::class,'AddToGroup'])->middleware('auth')->name('add.group');
 
 
 //----------------------------------------------------------------

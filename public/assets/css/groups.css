@@ -1,15 +1,41 @@
 .chat-ui{
-width: 66%;
+width: 100%;
 }
 
-@media (min-width: 1199%) {
+@media (min-width: 1199px){
+        .chat-ui {
+    width: 66%;
 
-    .chat-ui{
-        width: 100%;
-        }
-        
-  }
-
-
+        }}
 
   
+        .chtview{
+            display: flex !important;
+            flex-direction: column;
+        }
+
+        .bottom-bar{
+            height: 0 !important;
+            background: none!important; 
+
+        }
+
+.inpc,.btnc{
+    top: 0 !important;
+    position: relative !important;
+}
+
+.inpc{
+    width: 90% !important;
+}
+
+.card-header{
+    display: flex;
+}
+
+
+.chat{
+    width: 100%;
+}
+
+

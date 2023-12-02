@@ -165,9 +165,14 @@ Eduverse  </title>
         <div class="col-12 col-xl-4">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
-              <div class="row">
+            @if($lang=='es')
+              <div class="row" style="justify-content: flex-end;">
+                <div class="col-md-8 d-flex align-items-center" style="justify-content: flex-end;">
+            @else
+            <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
-                <h6 class="mb-0">@if ($lang=='en') Profile information @elseif($lang=='fr')À propos de vous @elseif($lang=='es')معلومات الملف الشخصي @endif</h6>
+            @endif
+                @if ($lang=='en')  <h6 class="mb-0"> Profile information</h6>  @elseif($lang=='fr') <h6 class="mb-0"> À propos de vous </h6> @elseif($lang=='es')                <h6 class="mb-0" style="text-align:right">معلومات الملف الشخصي </h6>@endif</h6>
                 </div>
                 <br>
                 <div class="">

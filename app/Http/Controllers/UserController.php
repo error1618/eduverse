@@ -107,26 +107,40 @@ class UserController extends Controller
         if($existingRow){
             $date = Carbon::parse($existingRow->date);
         }
-
         
         if($existingRow){
             if ($date->format('m') != $currentMonth || $date->format('y') != $currentYear  ) {
+                if($existingRow2){
                 DB::table('visites')
                     ->where('user_id', $userId)
                     ->whereMonth('date', $currentMonth)
                     ->update(['visites' => $existingRow2->visites + 1]);
+                }else{
+                    DB::table('visites')->insert([
+                        'visites' => 1,
+                        'date' => Carbon::now(),
+                        'user_id' => $userId,
+                    ]);
+                }
                 DB::table('visitors')
                     ->where('user_id_visited',$userId)
                     ->where('user_id', auth()->id())
                     ->update(['date' => Carbon::now()]);
             }
         } else if (!$existingRow){
-    
-            DB::table('visites')->insert([
-                'visites' => 1,
-                'date' => Carbon::now(),
-                'user_id' => $userId,
-            ]);
+            
+            if(!$existingRow2){
+                    DB::table('visites')->insert([
+                        'visites' => 1,
+                        'date' => Carbon::now(),
+                        'user_id' => $userId,
+                    ]);
+            }else{
+                DB::table('visites') ->where('user_id', $userId)
+                ->whereMonth('date', $currentMonth)
+                ->whereYear('date', $currentYear)
+                ->update(['visites' => $existingRow2->visites+1]);
+            }
 
             DB::table('visitors')->insert([
                 'date' => Carbon::now(),
@@ -135,8 +149,12 @@ class UserController extends Controller
             ]);
 
         }
+
+        $groups =  DB::table('groups')
+        ->where('admin_id','=',auth()->id())
+        ->get();    
                 
-        return view('user.profileOther',compact('userOther','posts'));
+        return view('user.profileOther',compact('userOther','posts','groups'));
     }
 
     public function fetch(Request $request){

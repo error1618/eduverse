@@ -32,25 +32,26 @@ auth()->user()->readAlert();
 <style>
 
 .number {
-  position: absolute;
-  top: 5px;
-  right: 1px;
-  width: 10px;
-  height: 10px;
-  background-color: #ff6b6b;
-  color: #fff;
-  font-size: 11px;
-  font-weight: bold;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 8px;
+    left: 70%;
+    width: 10px;
+    height: 10px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    position: relative;
+    /* align-items: center; */
+    margin: 0;
+    padding: 0
 }
 
 </style>
                              <script>
                                     if(document.getElementById("notify").getElementsByTagName("li").length  == 0){
-                                      document.getElementById('dropdownMenuButton').innerHTML = '<div class="number"></div>'
+                                      document.getElementById('nct').innerHTML = '<div class="number"></div>' + document.getElementById('nct').innerHTML
                                       document.getElementById("notify").innerHTML+=
                                                 `<li class="mb-2" id="{{$noti->id}}" onclick="remove(this)">\
                                                           <a class="dropdown-item border-radius-md" href="javascript:;">\
@@ -76,7 +77,7 @@ auth()->user()->readAlert();
 
                                          if(document.getElementById("notify").getElementsByTagName("li")[i].id != parseInt("{{$noti->id}}")){
                                           console.log("{{$noti->id}}")
-                                          document.getElementById('dropdownMenuButton').innerHTML = '<div class="number"></div>'
+                                          document.getElementById('nct').innerHTML = '<div class="number"></div>' + document.getElementById('nct').innerHTML
                                           document.getElementById("notify").innerHTML+=
                                                 `<li class="mb-2" id="{{$noti->id}}" onclick="remove(this)">\
                                                           <a class="dropdown-item border-radius-md" href="javascript:;">\

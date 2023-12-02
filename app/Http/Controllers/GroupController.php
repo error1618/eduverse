@@ -11,13 +11,25 @@ class GroupController extends Controller
         return view('groupchat.group');
     }
 
-    public function CreateGroup(Request $request){
-        
-        $newGroup = new group();
+    public function createGroup(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:50', 
+        ]);
+    
+        $newGroup = new Group();
         $newGroup->admin_id = auth()->id();
         $newGroup->name = $request->name;
         $newGroup->save();
-        return view('groupchat.group');
+    
+        return redirect()->back();
+    }
+    
+
+    public function AddToGroup(Request $request){
+        $newMember = $request->uid;
+        $group = group::find($request->gid);
+        $group->addGroupMember((int)$newMember);
+        return redirect()->back();
     }
 
 }
